@@ -19,12 +19,12 @@ internal class Result
     {
         var theJourney = SEA_LEVEL;
         var numberOfValleys = 0;
-        var isBellowSeaLevel = false;
+        var previouslyBellowSeaLevel = false;
         for (var step = 0; step < steps; step++)
         {
             theJourney += IsClimbing(path[step]) ? CLIMBING : DOWN;
-            if (JourneyHitTheSeaLevel(theJourney) && isBellowSeaLevel) numberOfValleys++;
-            isBellowSeaLevel = theJourney < 0;
+            if (previouslyBellowSeaLevel && JourneyHitTheSeaLevel(theJourney)) numberOfValleys++;
+            previouslyBellowSeaLevel = IsJourneyBellowSeaLevel(theJourney);
         }
 
         return numberOfValleys;
@@ -32,12 +32,14 @@ internal class Result
 
     private static bool IsClimbing(char step) => step == 'U';
 
-    private static bool JourneyHitTheSeaLevel(int theJourney) => theJourney == SEA_LEVEL;
+    private static bool JourneyHitTheSeaLevel(int journey) => journey == SEA_LEVEL;
+
+    private static bool IsJourneyBellowSeaLevel(int journey) => journey < 0;
 }
 
 internal class Solution
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         var steps = 20;
         var path = "DDUUUDDDUUUDDDUUUDDU";
