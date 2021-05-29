@@ -11,9 +11,9 @@ internal class Result
      *  2. STRING path
      */
 
-    private static readonly int SEA_LEVEL = 0;
-    private static readonly int CLIMBING = 1;
-    private static readonly int DOWN = -1;
+    private const int SEA_LEVEL = 0;
+    private const int CLIMBING = 1;
+    private const int DOWN = -1;
 
     public static int CountingValleys(int steps, string path)
     {
